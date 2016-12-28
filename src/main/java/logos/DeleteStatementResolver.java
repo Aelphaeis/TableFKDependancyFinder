@@ -1,9 +1,10 @@
-package pojo;
+package logos;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Stack;
 
+import pojo.TableDependencyInfo;
 import structures.Visitor;
 import structures.TreeNode;
 import utilities.MySqlUtils;

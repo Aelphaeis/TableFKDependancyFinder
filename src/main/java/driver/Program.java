@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Stack;
 
+import logos.DeleteStatementResolver;
 import structures.TreeNode;
-import pojo.DeleteStatementResolver;
 import pojo.TableDependencyInfo;
 import utilities.MySqlUtils;
 
