@@ -1,4 +1,4 @@
-package driver;
+package pojo;
 
 import javax.xml.bind.JAXBException;
 

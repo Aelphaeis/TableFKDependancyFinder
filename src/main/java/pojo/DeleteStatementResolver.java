@@ -1,18 +1,24 @@
-package driver;
+package pojo;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Stack;
 
-import jmo.patterns.visitor.Visitor;
-import jmo.structures.TreeNode;
+import structures.Visitor;
+import structures.TreeNode;
+import utilities.MySqlUtilities;
 
+/**
+ * This class implements the visitor pattern to transverse a {@link TreeNode} and creates a delete statement
+ * @author joseph.morain
+ *
+ */
 public class DeleteStatementResolver implements Visitor<TreeNode<TableDependencyInfo>>{
 	
 	public static TreeNode<TableDependencyInfo> resolveDependencies(Connection connection, String schema, String table, String idColumn) throws SQLException{
 		//Get dependency information
 		TableDependencyInfo root = new TableDependencyInfo();
-		MySqlTableDependencies helper = new MySqlTableDependencies();
+		MySqlUtilities helper = new MySqlUtilities();
 		TreeNode<TableDependencyInfo> info = helper.listChildHierarchy(connection, schema, table);
 		
 

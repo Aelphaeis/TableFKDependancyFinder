@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Stack;
 
-import jmo.structures.TreeNode;
+import structures.TreeNode;
+import pojo.DeleteStatementResolver;
+import pojo.TableDependencyInfo;
+import utilities.MySqlUtilities;
 
 public class Program {
 
@@ -27,7 +30,7 @@ public class Program {
 
 	public static void ShowHierarchy(String table, String schema, String idColumn) throws SQLException {
 		TableDependencyInfo root = new TableDependencyInfo();
-		MySqlTableDependencies helper = new MySqlTableDependencies();
+		MySqlUtilities helper = new MySqlUtilities();
 		TreeNode<TableDependencyInfo> info = helper.listChildHierarchy(
 				getConnection(), schema, table);
 

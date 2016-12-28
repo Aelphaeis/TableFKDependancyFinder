@@ -1,4 +1,4 @@
-package driver;
+package utilities;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,16 +6,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jmo.structures.TreeNode;
+import structures.TreeNode;
+import pojo.TableDependencyInfo;
 
 import com.mysql.jdbc.PreparedStatement;
-
 import org.apache.log4j.Logger;
-public class MySqlTableDependencies {
+
+public class MySqlUtilities {
 	String query;
-	private static final Logger logger = Logger.getLogger(MySqlTableDependencies.class) ;
+	private static final Logger logger = Logger.getLogger(MySqlUtilities.class) ;
 	
-	public MySqlTableDependencies(){
+	public MySqlUtilities(){
 		logger.trace("Starting instantiation of MySqlTableDependencies object");
 		
 		query = "";
