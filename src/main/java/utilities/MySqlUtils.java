@@ -12,11 +12,11 @@ import pojo.TableDependencyInfo;
 import com.mysql.jdbc.PreparedStatement;
 import org.apache.log4j.Logger;
 
-public class MySqlUtilities {
-	String query;
-	private static final Logger logger = Logger.getLogger(MySqlUtilities.class) ;
+public class MySqlUtils {
 	
-	public MySqlUtilities(){
+	private static final Logger logger = Logger.getLogger(MySqlUtils.class) ;
+	private static String query;
+	static {
 		logger.trace("Starting instantiation of MySqlTableDependencies object");
 		
 		query = "";
@@ -31,7 +31,7 @@ public class MySqlUtilities {
 		logger.trace("Instantiation of MySqlTableDependencies complete");
 	}
 	
-	public List<TableDependencyInfo> listTableChildren(Connection connection, String schemaName, String tableName) throws SQLException{
+	public static List<TableDependencyInfo> listTableChildren(Connection connection, String schemaName, String tableName) throws SQLException{
 		logger.trace("START : ListTableChildren");
 		logger.debug("Finding information for " + schemaName + "." + tableName);
 		try{
@@ -67,7 +67,7 @@ public class MySqlUtilities {
 		}
 	}
 	
-	public TreeNode<TableDependencyInfo> listChildHierarchy(Connection connection, String schema, String tableName) throws SQLException{
+	public static TreeNode<TableDependencyInfo> listChildHierarchy(Connection connection, String schema, String tableName) throws SQLException{
 		logger.trace("START : listChildHierarchy");
 
 		logger.debug("Computing table foreign key dependencies for " + schema + "." + tableName);
@@ -84,7 +84,7 @@ public class MySqlUtilities {
 		return tree;
 	}
 
-	private TreeNode<TableDependencyInfo> listChildHierarchy(Connection connection, TreeNode<TableDependencyInfo> n) throws SQLException{
+	private static TreeNode<TableDependencyInfo> listChildHierarchy(Connection connection, TreeNode<TableDependencyInfo> n) throws SQLException{
 		logger.trace("START : listChildHierarchy");
 		TableDependencyInfo info = n.getValue();
 		
@@ -101,4 +101,7 @@ public class MySqlUtilities {
 		logger.trace("END : listChildHierarchy");
 		return n;
 	}
+	
+	private MySqlUtils(){ }
+	
 }

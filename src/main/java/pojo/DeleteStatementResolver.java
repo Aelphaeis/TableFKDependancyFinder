@@ -6,7 +6,7 @@ import java.util.Stack;
 
 import structures.Visitor;
 import structures.TreeNode;
-import utilities.MySqlUtilities;
+import utilities.MySqlUtils;
 
 /**
  * This class implements the visitor pattern to transverse a {@link TreeNode} and creates a delete statement
@@ -18,8 +18,7 @@ public class DeleteStatementResolver implements Visitor<TreeNode<TableDependency
 	public static TreeNode<TableDependencyInfo> resolveDependencies(Connection connection, String schema, String table, String idColumn) throws SQLException{
 		//Get dependency information
 		TableDependencyInfo root = new TableDependencyInfo();
-		MySqlUtilities helper = new MySqlUtilities();
-		TreeNode<TableDependencyInfo> info = helper.listChildHierarchy(connection, schema, table);
+		TreeNode<TableDependencyInfo> info = MySqlUtils.listChildHierarchy(connection, schema, table);
 		
 
 		// Fill the root with the correct information

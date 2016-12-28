@@ -8,7 +8,7 @@ import java.util.Stack;
 import structures.TreeNode;
 import pojo.DeleteStatementResolver;
 import pojo.TableDependencyInfo;
-import utilities.MySqlUtilities;
+import utilities.MySqlUtils;
 
 public class Program {
 
@@ -30,9 +30,7 @@ public class Program {
 
 	public static void ShowHierarchy(String table, String schema, String idColumn) throws SQLException {
 		TableDependencyInfo root = new TableDependencyInfo();
-		MySqlUtilities helper = new MySqlUtilities();
-		TreeNode<TableDependencyInfo> info = helper.listChildHierarchy(
-				getConnection(), schema, table);
+		TreeNode<TableDependencyInfo> info = MySqlUtils.listChildHierarchy(getConnection(), schema, table);
 
 		root.setReferencedColumnName(idColumn);
 		root.setReferencedTableName(table);
