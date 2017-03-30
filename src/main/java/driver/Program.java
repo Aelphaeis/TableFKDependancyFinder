@@ -5,20 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import logos.DeleteStatementResolver;
+import logos.TableLister;
 import structures.TreeNode;
 import pojo.TableDependencyInfo;
 
 public class Program {
+	
+	public static final String schema = "invitely_design";
+	public static final String table = "projects";
+	public static final String tablePK = "idProjects";
 
 	public static void main(String[] args) throws Exception {
-		printDeleteStatements();
+		ListTables();
 	}
 	
 	public static void printDeleteStatements() throws SQLException{
 		//You need to specify schema table and primary key for specified table.
-		String schema = "";
-		String table = "";
-		String tablePK = "";
 		Connection conn = getConnection();
 		
 		long start = System.currentTimeMillis();
@@ -34,6 +36,14 @@ public class Program {
 		System.out.println(String.format(msg, duration));
 	}
 	
+	public static void ListTables() throws SQLException{
+		TreeNode<TableDependencyInfo> dependencies;
+		Connection conn = getConnection();
+		dependencies = DeleteStatementResolver.resolveDependencies(conn, schema, table, tablePK);
+		TableLister visitor = new TableLister();
+		dependencies.transverseNodes(visitor);
+		visitor.print();
+	}
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/prod_prime", 
