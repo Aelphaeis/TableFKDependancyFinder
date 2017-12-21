@@ -15,6 +15,7 @@ public class Program {
 	
 	private static final Logger logger = Logger.getLogger(Program.class);
 	
+	//TODO set this information
 	public static final String SCHEMA = "";
 	public static final String TABLE = "";
 	public static final String PK = "";
@@ -48,9 +49,10 @@ public class Program {
 	}
 	
 	public static Connection getConnection() throws SQLException {
+		//TODO driver manager
 		return DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/prod_prime", 
-				"root",
-				"wadetech");
+				"", 
+				"",
+				"");
 	}
 }
