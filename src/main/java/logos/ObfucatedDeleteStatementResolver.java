@@ -85,7 +85,8 @@ public class ObfucatedDeleteStatementResolver implements Visitor<TreeNode<TableD
 		}
 		
 		String sql = "";
-		for(String fragment  : statements){
+		while(statements.peekLast() != null) {
+			String fragment = statements.pollLast();
 			if(sql.isEmpty()){
 				sql = fragment;
 			}

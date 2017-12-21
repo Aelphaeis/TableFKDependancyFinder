@@ -74,7 +74,8 @@ public class DeleteStatementResolver implements Visitor<TreeNode<TableDependency
 		}
 		
 		String sql = "";
-		for(String fragment  : statements){
+		while(statements.peekLast() != null) {
+			String fragment = statements.pollLast();
 			if(sql.isEmpty()){
 				sql = fragment;
 			}
