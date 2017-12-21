@@ -9,6 +9,11 @@ import jmo.patterns.visitor.Visitor;
 import jmo.structures.TreeNode;
 import pojo.TableDependencyInfo;
 
+/**
+ * This does not work as intended
+ * @author morain
+ *
+ */
 public class TableLister implements Visitor<TreeNode<TableDependencyInfo>>{
 	
 	private static final Logger logger = Logger.getLogger(TableLister.class);
