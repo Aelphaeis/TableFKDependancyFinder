@@ -2,16 +2,17 @@ package logos;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
 
 import org.apache.log4j.Logger;
 
+import jmo.patterns.visitor.Visitor;
+import jmo.structures.TreeNode;
 import jmo.util.Randomizer;
 import pojo.TableDependencyInfo;
-import structures.TreeNode;
-import structures.Visitor;
 import utilities.MySqlUtils;
 
 public class ObfucatedDeleteStatementResolver implements Visitor<TreeNode<TableDependencyInfo>>{
@@ -38,20 +39,20 @@ public class ObfucatedDeleteStatementResolver implements Visitor<TreeNode<TableD
 	private static final String KEY = "@id";
 	Map<String, String> obfuscated;
 	Randomizer randomizer;
-	Stack<String> out;
+	Deque<String> out;
 	int visitedNodeCount = 0;
 	
 	public ObfucatedDeleteStatementResolver() {
-		obfuscated = new HashMap<String, String>();
+		obfuscated = new HashMap<>();
 		randomizer = new Randomizer();
-		out = new Stack<String>();
+		out = new ArrayDeque<>();
 	}
 
 	@Override
 	public void visit(TreeNode<TableDependencyInfo> element) {
 		logger.debug("Visiting node " + ++visitedNodeCount);
 		TreeNode<TableDependencyInfo> n = element;
-		Stack<String> statements  = new Stack<String>();
+		Deque<String> statements  = new ArrayDeque<>();
 		char placeHolder = 'a';
 		String ref = "";
 		for(int c = 0; n != null; c++, placeHolder++){

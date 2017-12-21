@@ -4,19 +4,23 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
+import jmo.structures.TreeNode;
 import logos.DeleteStatementResolver;
 import logos.TableLister;
-import structures.TreeNode;
 import pojo.TableDependencyInfo;
 
 public class Program {
 	
-	public static final String schema = "invitely_design";
-	public static final String table = "projects";
-	public static final String tablePK = "idProjects";
+	private static final Logger logger = Logger.getLogger(Program.class);
+	
+	public static final String SCHEMA = "";
+	public static final String TABLE = "";
+	public static final String PK = "";
 
 	public static void main(String[] args) throws Exception {
-		ListTables();
+		printDeleteStatements();
 	}
 	
 	public static void printDeleteStatements() throws SQLException{
@@ -24,26 +28,25 @@ public class Program {
 		Connection conn = getConnection();
 		
 		long start = System.currentTimeMillis();
-		TreeNode<TableDependencyInfo> dependencies;
-		dependencies = DeleteStatementResolver.resolveDependencies(conn, schema, table, tablePK);
+		TreeNode<TableDependencyInfo> dependencies = DeleteStatementResolver.resolveDependencies(conn, SCHEMA, TABLE, PK);
 		DeleteStatementResolver resolver = new DeleteStatementResolver();
 		dependencies.transverseNodes(resolver);
-		System.out.println(resolver);
+		logger.info(resolver);
 		
 		long duration = System.currentTimeMillis() - start;
 		
 		String msg = "Resolved dependencies in %s milliseconds";
-		System.out.println(String.format(msg, duration));
+		logger.info(String.format(msg, duration));
 	}
 	
-	public static void ListTables() throws SQLException{
-		TreeNode<TableDependencyInfo> dependencies;
+	public static void listTables() throws SQLException{
 		Connection conn = getConnection();
-		dependencies = DeleteStatementResolver.resolveDependencies(conn, schema, table, tablePK);
+		TreeNode<TableDependencyInfo> dependencies = DeleteStatementResolver.resolveDependencies(conn, SCHEMA, TABLE, PK);
 		TableLister visitor = new TableLister();
 		dependencies.transverseNodes(visitor);
 		visitor.print();
 	}
+	
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/prod_prime", 

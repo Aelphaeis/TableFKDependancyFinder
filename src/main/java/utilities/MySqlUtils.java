@@ -6,10 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import structures.TreeNode;
 import pojo.TableDependencyInfo;
 
 import com.mysql.jdbc.PreparedStatement;
+
+import jmo.structures.TreeNode;
+
 import org.apache.log4j.Logger;
 
 public class MySqlUtils {
@@ -34,9 +36,10 @@ public class MySqlUtils {
 	public static List<TableDependencyInfo> listTableChildren(Connection connection, String schemaName, String tableName) throws SQLException{
 		logger.trace("START : ListTableChildren");
 		logger.debug("Finding information for " + schemaName + "." + tableName);
+		PreparedStatement stmt = null;
 		try{
 			logger.trace("Preparing Statement");
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(query);
+			stmt = (PreparedStatement) connection.prepareStatement(query);
 			
 			logger.trace("Setting variables in prepared statement");
 			stmt.setString(1, schemaName);
@@ -44,7 +47,7 @@ public class MySqlUtils {
 			
 			logger.trace("Executing prepared statement");
 			ResultSet results = stmt.executeQuery();
-			List<TableDependencyInfo> tableDependencies = new ArrayList<TableDependencyInfo>();
+			List<TableDependencyInfo> tableDependencies = new ArrayList<>();
 			
 			logger.trace("Storing results into array");
 			while(results.next()){
@@ -65,13 +68,18 @@ public class MySqlUtils {
 			logger.error(e.getMessage(), e);
 			throw e;
 		}
+		finally {
+			if(stmt != null) {
+				stmt.close();
+			}
+		}
 	}
 	
 	public static TreeNode<TableDependencyInfo> listChildHierarchy(Connection connection, String schema, String tableName) throws SQLException{
 		logger.trace("START : listChildHierarchy");
 
 		logger.debug("Computing table foreign key dependencies for " + schema + "." + tableName);
-		TreeNode<TableDependencyInfo> tree = new TreeNode<TableDependencyInfo>();
+		TreeNode<TableDependencyInfo> tree = new TreeNode<>();
 		tree.addChildren(listTableChildren(connection, schema, tableName));
 		
 		logger.trace("Computing table foreign key dependencides for children");

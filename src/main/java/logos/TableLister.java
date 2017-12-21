@@ -1,16 +1,21 @@
 package logos;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
+import org.apache.log4j.Logger;
+
+import jmo.patterns.visitor.Visitor;
+import jmo.structures.TreeNode;
 import pojo.TableDependencyInfo;
-import structures.TreeNode;
-import structures.Visitor;
 
 public class TableLister implements Visitor<TreeNode<TableDependencyInfo>>{
+	
+	private static final Logger logger = Logger.getLogger(TableLister.class);
 
-	Stack<String> out;
+	Deque<String> out;
 	public TableLister() {
-		out = new Stack<String>();
+		out = new ArrayDeque<>();
 	}
 
 	@Override
@@ -20,7 +25,7 @@ public class TableLister implements Visitor<TreeNode<TableDependencyInfo>>{
 	
 	public void print(){
 		for(String tabName : out){
-			System.out.println("#"+tabName);
+			logger.info("#"+tabName);
 		}
 	}
 

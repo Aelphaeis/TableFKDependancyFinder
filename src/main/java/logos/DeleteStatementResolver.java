@@ -2,11 +2,12 @@ package logos;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
+import jmo.patterns.visitor.Visitor;
+import jmo.structures.TreeNode;
 import pojo.TableDependencyInfo;
-import structures.Visitor;
-import structures.TreeNode;
 import utilities.MySqlUtils;
 
 /**
@@ -35,16 +36,16 @@ public class DeleteStatementResolver implements Visitor<TreeNode<TableDependency
 	}
 	
 	private static final String KEY = "@id";
-	Stack<String> out;
+	Deque<String> out;
 	
 	public DeleteStatementResolver() {
-		out = new Stack<String>();
+		out = new ArrayDeque<>();
 	}
 
 	@Override
 	public void visit(TreeNode<TableDependencyInfo> element) {
 		TreeNode<TableDependencyInfo> n = element;
-		Stack<String> statements  = new Stack<String>();
+		Deque<String> statements  = new ArrayDeque<>();
 		char placeHolder = 'a';
 		String ref = "";
 		for(int c = 0; n != null; c++, placeHolder++){
