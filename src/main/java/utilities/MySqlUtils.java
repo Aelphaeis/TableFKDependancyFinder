@@ -49,7 +49,7 @@ public class MySqlUtils {
 			ResultSet results = stmt.executeQuery();
 			List<TableDependencyInfo> tableDependencies = new ArrayList<>();
 			
-			logger.trace("Storing results into array");
+			logger.trace("Storing results into list");
 			while(results.next()){
 				TableDependencyInfo tableChild = new TableDependencyInfo();
 				tableChild.setTableName(results.getString("TABLE_NAME"));

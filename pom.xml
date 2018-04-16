@@ -12,11 +12,6 @@
 			<name>Joseph aws release repository</name>
 			<url>https://s3.amazonaws.com/repo.maven/release</url>
 		</repository>
-		<snapshotRepository>
-			<id>s3-maven-snapshot-repo</id>
-			<name>Joseph aws snapshot repository</name>
-			<url>https://s3.amazonaws.com/repo.maven/snapshots</url>
-		</snapshotRepository>
 	</repositories>
 
 	<dependencies>
@@ -31,9 +26,9 @@
 			<version>5.1.35</version>
 		</dependency>
 		<dependency>
-			<groupId>jmo</groupId>
-			<artifactId>utils</artifactId>
-			<version>3.0.0-SNAPSHOT</version>
+			<groupId>JmoUtilities</groupId>
+			<artifactId>JmoUtilities</artifactId>
+			<version>2.1</version>
 		</dependency>
 	</dependencies>
 
