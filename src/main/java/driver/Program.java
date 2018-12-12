@@ -11,20 +11,20 @@ import jmo.structures.TreeNode;
 import logos.DeleteStatementResolver;
 import logos.DependencyMapper;
 import logos.SchemaTableResolver;
-import logos.TableLister;
 import pojo.TableDependencyInfo;
 
 public class Program {
 	
 	private static final Logger logger = Logger.getLogger(Program.class);
+	private static final Settings SETTINGS = Settings.getSettings();
 	
-	//TODO set this information
-	public static final String SCHEMA = "";
-	public static final String TABLE = "";
-	public static final String PK = "";
+	public static final String SCHEMA = SETTINGS.getSchema();
+	public static final String TABLE = SETTINGS.getTable();
+	public static final String PK = SETTINGS.getPrimaryKey();
 
+	
 	public static void main(String[] args) throws Exception {
-		listAllTables();
+		listDependenciesMap();
 	}
 	
 	public static void listDependenciesMap() throws SQLException {
@@ -34,7 +34,7 @@ public class Program {
 		logger.info(tt.transverseNodes(new Stringifier<>()));
 	}
 	
-	public static void listAllTables () throws SQLException {
+	public static void listAllTables() throws SQLException {
 		new SchemaTableResolver()
 			.getAllTables(getConnection(), SCHEMA)
 			.forEach(logger::info);
@@ -48,7 +48,7 @@ public class Program {
 		TreeNode<TableDependencyInfo> dependencies = DeleteStatementResolver.resolveDependencies(conn, SCHEMA, TABLE, PK);
 		DeleteStatementResolver resolver = new DeleteStatementResolver();
 		dependencies.transverseNodes(resolver);
-		logger.info(resolver);
+		logger.info("\n" + resolver);
 		
 		long duration = System.currentTimeMillis() - start;
 		
@@ -56,19 +56,10 @@ public class Program {
 		logger.info(String.format(msg, duration));
 	}
 	
-	public static void listTables() throws SQLException{
-		Connection conn = getConnection();
-		TreeNode<TableDependencyInfo> dependencies = DeleteStatementResolver.resolveDependencies(conn, SCHEMA, TABLE, PK);
-		TableLister visitor = new TableLister();
-		dependencies.transverseNodes(visitor);
-		visitor.print();
-	}
-	
 	public static Connection getConnection() throws SQLException {
-		//TODO driver manager
 		return DriverManager.getConnection(
-				"", 
-				"",
-				"");
+				SETTINGS.getConnectionString(), 
+				SETTINGS.getUsername(),
+				SETTINGS.getPassword());
 	}
 }
