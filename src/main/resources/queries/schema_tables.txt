@@ -1,3 +1,6 @@
-SELECT tab.table_name
-FROM   information_schema.tables tab
-WHERE  tab.table_schema = COALESCE(?, tab.table_schema); 
+SELECT 
+	tab.table_name 
+FROM   
+	information_schema.tables tab 
+WHERE  
+	tab.table_schema = COALESCE(?, tab.table_schema) 
