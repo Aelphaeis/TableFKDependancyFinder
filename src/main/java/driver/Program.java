@@ -6,8 +6,11 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import jmo.patterns.visitor.Stringifier;
 import jmo.structures.TreeNode;
 import logos.DeleteStatementResolver;
+import logos.DependencyMapper;
+import logos.SchemaTableResolver;
 import logos.TableLister;
 import pojo.TableDependencyInfo;
 
@@ -21,7 +24,20 @@ public class Program {
 	public static final String PK = "";
 
 	public static void main(String[] args) throws Exception {
-		printDeleteStatements();
+		listAllTables();
+	}
+	
+	public static void listDependenciesMap() throws SQLException {
+		Connection conn = getConnection();
+		DependencyMapper dm = new DependencyMapper(conn, SCHEMA, TABLE, PK);
+		TreeNode<String> tt = dm.getTableTree();
+		logger.info(tt.transverseNodes(new Stringifier<>()));
+	}
+	
+	public static void listAllTables () throws SQLException {
+		new SchemaTableResolver()
+			.getAllTables(getConnection(), SCHEMA)
+			.forEach(logger::info);
 	}
 	
 	public static void printDeleteStatements() throws SQLException{
