@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
 
 import jmo.patterns.visitor.Visitor;
 import jmo.structures.TreeNode;
@@ -18,6 +19,19 @@ import utilities.MySqlUtils;
 public class DeleteStatementResolver implements Visitor<TreeNode<TableDependencyInfo>>{
 	
 	public static TreeNode<TableDependencyInfo> resolveDependencies(Connection connection, String schema, String table, String idColumn) throws SQLException{
+		
+		SchemaTableResolver tableResolver = new SchemaTableResolver();
+		List<String> tables = tableResolver.getAllTables(connection, schema);
+
+		boolean existing = tables.stream()
+			.map(String::toLowerCase)
+			.anyMatch(p -> p.equals(table.toLowerCase()));
+		
+		if(!existing) {
+			String err = "[%s] is not a valid table";
+			throw new IllegalArgumentException(String.format(err, table));
+		}
+		
 		//Get dependency information
 		TableDependencyInfo root = new TableDependencyInfo();
 		TreeNode<TableDependencyInfo> info = MySqlUtils.listChildHierarchy(connection, schema, table);
