@@ -12,7 +12,7 @@ public class Settings {
 		s.password = "";
 		s.username = "";
 		
-		return getSettings();
+		return s;
 	}
 	
 	private String schema;
