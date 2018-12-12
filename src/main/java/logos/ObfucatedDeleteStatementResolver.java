@@ -43,8 +43,8 @@ public class ObfucatedDeleteStatementResolver implements Visitor<TreeNode<TableD
 	int visitedNodeCount = 0;
 	
 	public ObfucatedDeleteStatementResolver() {
-		obfuscated = new HashMap<>();
 		randomizer = new Randomizer();
+		obfuscated = new HashMap<>();
 		out = new ArrayDeque<>();
 	}
 
