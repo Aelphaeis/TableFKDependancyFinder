@@ -24,8 +24,7 @@ public class DeleteStatementResolver implements Visitor<TreeNode<TableDependency
 		List<String> tables = tableResolver.getAllTables(connection, schema);
 
 		boolean existing = tables.stream()
-			.map(String::toLowerCase)
-			.anyMatch(p -> p.equals(table.toLowerCase()));
+			.anyMatch(p -> p.equalsIgnoreCase(table));
 		
 		if(!existing) {
 			String err = "[%s] is not a valid table";
