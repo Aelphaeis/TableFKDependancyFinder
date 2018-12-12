@@ -17,21 +17,7 @@ import org.apache.log4j.Logger;
 public class MySqlUtils {
 	
 	private static final Logger logger = Logger.getLogger(MySqlUtils.class) ;
-	private static String query;
-	static {
-		logger.trace("Starting instantiation of MySqlTableDependencies object");
-		
-		query = "";
-		query += " select ";
-		query += "	TABLE_NAME,COLUMN_NAME,CONSTRAINT_NAME, REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME, CONSTRAINT_SCHEMA";
-		query += " from INFORMATION_SCHEMA.KEY_COLUMN_USAGE ";
-		query += " where ";
-		query += "   CONSTRAINT_SCHEMA = coalesce( ? , CONSTRAINT_SCHEMA)";
-		query += " and ";
-		query += "   REFERENCED_TABLE_NAME = ? ";
-		
-		logger.trace("Instantiation of MySqlTableDependencies complete");
-	}
+	private static String query = Queries.getQuery("list_dependents");
 	
 	public static List<TableDependencyInfo> listTableChildren(Connection connection, String schemaName, String tableName) throws SQLException{
 		logger.trace("START : ListTableChildren");
