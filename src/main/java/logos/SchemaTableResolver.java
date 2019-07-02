@@ -10,7 +10,9 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import dbms.Behavior;
 import exceptions.FinderRuntimeException;
+import utilities.Databases.DBMS;
 import utilities.Queries;
 
 /**
@@ -18,7 +20,7 @@ import utilities.Queries;
  * @author morain
  *
  */
-public class SchemaTableResolver {
+public class SchemaTableResolver implements Behavior {
 	private static final Logger logger = LogManager.getLogger(SchemaTableResolver.class);
 	private static final String TABLE_QUERY = Queries.getQuery("schema_tables");
 
@@ -53,6 +55,11 @@ public class SchemaTableResolver {
 			}
 		}
 		return tables;
+	}
+
+	@Override
+	public DBMS getVendor() {
+		return DBMS.MYSQL;
 	}
 
 }
