@@ -1,6 +1,6 @@
-package com.cruat.tools.aide.database.logos;
+package com.cruat.tools.aide.database.behaviors;
 
-import static com.cruat.tools.aide.database.logos.DeleteStatementResolver.resolveDependencies;
+import static com.cruat.tools.aide.database.behaviors.DeleteStatementResolver.resolveDependencies;
 
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.logos;
+package com.cruat.tools.aide.database.behaviors;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
