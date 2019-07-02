@@ -23,8 +23,12 @@ public class Program {
 	public static final String TABLE = QuerySettings.TABLE.getValue();
 
 	
-	public static void main(String[] args) {
-		listDependenciesMap();
+	public static void main(String... args) {
+		try(Connection connection  = DatabaseSettings.getConnection()){
+			connection.getMetaData();
+		} catch (SQLException e) {
+			logger.error("Error occured with connection", e);
+		}
 	}
 	
 	public static void listDependenciesMap() {
