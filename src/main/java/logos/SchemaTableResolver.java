@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import exceptions.FinderRuntimeException;
 import utilities.Queries;
 
 /**
@@ -34,7 +35,7 @@ public class SchemaTableResolver {
 		} catch (SQLException e) {
 			String err = "Unable to get table list";
 			logger.error(err, e);
-			throw new RuntimeException(err, e);
+			throw new FinderRuntimeException(err, e);
 		}
 		finally {
 			long end = System.currentTimeMillis();

@@ -1,11 +1,13 @@
 package logos;
 
+import static logos.DeleteStatementResolver.resolveDependencies;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import exceptions.FinderRuntimeException;
 import jmo.structures.TreeNode;
 import pojo.TableDependencyInfo;
-import static logos.DeleteStatementResolver.resolveDependencies;
 
 public class DependencyMapper {
 
@@ -32,7 +34,7 @@ public class DependencyMapper {
 			return dependencies.map(TableDependencyInfo::getTableName);
 		}
 		catch(Exception e) {
-			throw new RuntimeException(e);
+			throw new FinderRuntimeException(e);
 		}
 	}
 	
