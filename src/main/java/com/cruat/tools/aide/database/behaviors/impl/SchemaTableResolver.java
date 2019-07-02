@@ -10,10 +10,9 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.cruat.tools.aide.database.behaviors.Behavior;
 import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
-import com.cruat.tools.aide.database.utilities.Queries;
 import com.cruat.tools.aide.database.utilities.Databases.DBMS;
+import com.cruat.tools.aide.database.utilities.Queries;
 
 /**
  * This class gets all the tables from a given schema
