@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Properties;
 
 import exceptions.FinderRuntimeException;
@@ -13,9 +14,9 @@ public enum QuerySettings {
 	TABLE("table"),
 	PRIMARY_KEY("primary.key");
 	
-	
+	private static final String FINDER_ERR = "property [%s] required a value.";
 	private static final String RESOURCE_FOLDER = "src/main/resources/";
-	private static final String SETTINGS_FILE = "database.properties";
+	private static final String SETTINGS_FILE = "query.properties";
 
 	private final String name;
 	
@@ -34,6 +35,17 @@ public enum QuerySettings {
 	
 	public String getValue(final File f) {
 		return getValue(this, f);
+	}
+	
+	public String validate() {
+		String value = Objects.requireNonNull(getValue());
+		if(value.trim().isEmpty()) {
+			String msg = String.format(FINDER_ERR, getName());
+			throw new FinderRuntimeException(msg);
+		}
+		else {
+			return value;
+		}
 	}
 	
 	public static String getValue(final QuerySettings setting, final File f) {
