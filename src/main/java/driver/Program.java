@@ -1,7 +1,6 @@
 package driver;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
@@ -12,29 +11,30 @@ import logos.DeleteStatementResolver;
 import logos.DependencyMapper;
 import logos.SchemaTableResolver;
 import pojo.TableDependencyInfo;
+import utilities.DatabaseSettings;
+import utilities.QuerySettings;
 
 public class Program {
 	
 	private static final Logger logger = Logger.getLogger(Program.class);
-	private static final Settings SETTINGS = Settings.getSettings();
 	
-	public static final String SCHEMA = SETTINGS.getSchema();
-	public static final String TABLE = SETTINGS.getTable();
-	public static final String PK = SETTINGS.getPrimaryKey();
+	public static final String PK = QuerySettings.PRIMARY_KEY.getValue();
+	public static final String SCHEMA = QuerySettings.SCHEMA.getValue();
+	public static final String TABLE = QuerySettings.TABLE.getValue();
 
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		listDependenciesMap();
 	}
 	
-	public static void listDependenciesMap() throws SQLException {
+	public static void listDependenciesMap() {
 		Connection conn = getConnection();
 		DependencyMapper dm = new DependencyMapper(conn, SCHEMA, TABLE, PK);
 		TreeNode<String> tt = dm.getTableTree();
 		logger.info(tt.transverseNodes(new Stringifier<>()));
 	}
 	
-	public static void listAllTables() throws SQLException {
+	public static void listAllTables()  {
 		new SchemaTableResolver()
 			.getAllTables(getConnection(), SCHEMA)
 			.forEach(logger::info);
@@ -56,10 +56,7 @@ public class Program {
 		logger.info(String.format(msg, duration));
 	}
 	
-	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(
-				SETTINGS.getConnectionString(), 
-				SETTINGS.getUsername(),
-				SETTINGS.getPassword());
+	public static Connection getConnection() {
+		return DatabaseSettings.getConnection();
 	}
 }
