@@ -1,11 +1,11 @@
-package utilities;
+package com.cruat.tools.aide.database.utilities;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import exceptions.FinderRuntimeException;
+import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 
 public class Databases {
 	private static final String DMBS_REGEX = "jdbc:(.*?):.*";

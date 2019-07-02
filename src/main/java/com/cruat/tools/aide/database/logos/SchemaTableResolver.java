@@ -1,4 +1,4 @@
-package logos;
+package com.cruat.tools.aide.database.logos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,16 +10,16 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import exceptions.FinderRuntimeException;
-import utilities.Databases.DBMS;
-import utilities.Queries;
+import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
+import com.cruat.tools.aide.database.utilities.Queries;
+import com.cruat.tools.aide.database.utilities.Databases.DBMS;
 
 /**
  * This class gets all the tables from a given schema
  * @author morain
  *
  */
-public class SchemaTableResolver implements dbms.Behavior {
+public class SchemaTableResolver implements com.cruat.tools.aide.database.dbms.Behavior {
 	private static final Logger logger = LogManager.getLogger(SchemaTableResolver.class);
 	private static final String TABLE_QUERY = Queries.getQuery("schema_tables");
 

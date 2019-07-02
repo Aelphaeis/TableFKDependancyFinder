@@ -1,13 +1,14 @@
-package logos;
+package com.cruat.tools.aide.database.logos;
 
-import static logos.DeleteStatementResolver.resolveDependencies;
+import static com.cruat.tools.aide.database.logos.DeleteStatementResolver.resolveDependencies;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import exceptions.FinderRuntimeException;
+import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
+import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
+
 import jmo.structures.TreeNode;
-import pojo.TableDependencyInfo;
 
 public class DependencyMapper {
 

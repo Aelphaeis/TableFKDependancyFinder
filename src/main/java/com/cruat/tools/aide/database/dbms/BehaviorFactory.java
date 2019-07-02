@@ -1,4 +1,4 @@
-package dbms;
+package com.cruat.tools.aide.database.dbms;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import exceptions.FinderRuntimeException;
-import utilities.DatabaseSettings;
-import utilities.Databases;
-import utilities.Databases.DBMS;
+import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
+import com.cruat.tools.aide.database.utilities.DatabaseSettings;
+import com.cruat.tools.aide.database.utilities.Databases;
+import com.cruat.tools.aide.database.utilities.Databases.DBMS;
 
 public class BehaviorFactory {
 	private static final BehaviorMap BMAP;

@@ -1,4 +1,4 @@
-package utilities;
+package com.cruat.tools.aide.database.utilities;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,8 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import pojo.TableDependencyInfo;
-
+import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
 import com.mysql.jdbc.PreparedStatement;
 
 import jmo.structures.TreeNode;

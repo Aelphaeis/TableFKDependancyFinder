@@ -1,15 +1,15 @@
-package driver;
+package com.cruat.tools.aide.database.driver;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import dbms.BehaviorFactory;
-import logos.SchemaTableResolver;
-import utilities.DatabaseSettings;
-import utilities.Databases;
-import utilities.QuerySettings;
+import com.cruat.tools.aide.database.dbms.BehaviorFactory;
+import com.cruat.tools.aide.database.logos.SchemaTableResolver;
+import com.cruat.tools.aide.database.utilities.DatabaseSettings;
+import com.cruat.tools.aide.database.utilities.Databases;
+import com.cruat.tools.aide.database.utilities.QuerySettings;
 
 public class ListTables {
 	

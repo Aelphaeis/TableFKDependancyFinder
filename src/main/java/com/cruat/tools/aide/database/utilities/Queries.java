@@ -1,4 +1,4 @@
-package utilities;
+package com.cruat.tools.aide.database.utilities;
 
 import java.io.File;
 import java.io.IOException;

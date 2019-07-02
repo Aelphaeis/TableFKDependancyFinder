@@ -1,18 +1,19 @@
-package driver;
+package com.cruat.tools.aide.database.driver;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import com.cruat.tools.aide.database.logos.DeleteStatementResolver;
+import com.cruat.tools.aide.database.logos.DependencyMapper;
+import com.cruat.tools.aide.database.logos.SchemaTableResolver;
+import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
+import com.cruat.tools.aide.database.utilities.DatabaseSettings;
+import com.cruat.tools.aide.database.utilities.QuerySettings;
+
 import jmo.patterns.visitor.Stringifier;
 import jmo.structures.TreeNode;
-import logos.DeleteStatementResolver;
-import logos.DependencyMapper;
-import logos.SchemaTableResolver;
-import pojo.TableDependencyInfo;
-import utilities.DatabaseSettings;
-import utilities.QuerySettings;
 
 public class Program {
 	

@@ -1,4 +1,4 @@
-package exceptions;
+package com.cruat.tools.aide.database.exceptions;
 
 public class FinderException extends Exception {
 

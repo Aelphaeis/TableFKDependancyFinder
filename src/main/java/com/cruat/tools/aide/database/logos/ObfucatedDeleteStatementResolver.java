@@ -1,4 +1,4 @@
-package logos;
+package com.cruat.tools.aide.database.logos;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,11 +9,12 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
+import com.cruat.tools.aide.database.utilities.MySqlUtils;
+
 import jmo.patterns.visitor.Visitor;
 import jmo.structures.TreeNode;
 import jmo.util.Randomizer;
-import pojo.TableDependencyInfo;
-import utilities.MySqlUtils;
 
 public class ObfucatedDeleteStatementResolver implements Visitor<TreeNode<TableDependencyInfo>>{
 	

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
+import com.cruat.tools.aide.database.utilities.Queries;
+
 public class QueriesTest {
 	@Test(timeout = 1000)
 	public void queryQuery_validQuery_queryReturned() {

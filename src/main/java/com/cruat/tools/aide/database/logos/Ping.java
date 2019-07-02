@@ -1,4 +1,4 @@
-package logos;
+package com.cruat.tools.aide.database.logos;
 
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package utilities;
+package com.cruat.tools.aide.database.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
 
-import exceptions.FinderRuntimeException;
+import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 
 public enum QuerySettings {
 	SCHEMA("schema"),

@@ -1,4 +1,4 @@
-package pojo;
+package com.cruat.tools.aide.database.pojo;
 
 import javax.xml.bind.JAXBException;
 

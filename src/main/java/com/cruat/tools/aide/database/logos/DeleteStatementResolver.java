@@ -1,4 +1,4 @@
-package logos;
+package com.cruat.tools.aide.database.logos;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,10 +6,11 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
+import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
+import com.cruat.tools.aide.database.utilities.MySqlUtils;
+
 import jmo.patterns.visitor.Visitor;
 import jmo.structures.TreeNode;
-import pojo.TableDependencyInfo;
-import utilities.MySqlUtils;
 
 /**
  * This class implements the visitor pattern to transverse a {@link TreeNode} and creates a delete statement
