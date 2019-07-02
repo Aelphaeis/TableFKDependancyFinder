@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 import com.cruat.tools.aide.database.behaviors.SchemaTableResolver;
-import com.cruat.tools.aide.database.dbms.BehaviorFactory;
+import com.cruat.tools.aide.database.behaviors.factory.BehaviorFactory;
 import com.cruat.tools.aide.database.utilities.DatabaseSettings;
 import com.cruat.tools.aide.database.utilities.Databases;
 import com.cruat.tools.aide.database.utilities.QuerySettings;

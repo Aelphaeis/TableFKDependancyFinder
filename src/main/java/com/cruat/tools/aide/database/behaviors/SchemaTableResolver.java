@@ -19,7 +19,7 @@ import com.cruat.tools.aide.database.utilities.Databases.DBMS;
  * @author morain
  *
  */
-public class SchemaTableResolver implements com.cruat.tools.aide.database.dbms.Behavior {
+public class SchemaTableResolver implements com.cruat.tools.aide.database.behaviors.factory.Behavior {
 	private static final Logger logger = LogManager.getLogger(SchemaTableResolver.class);
 	private static final String TABLE_QUERY = Queries.getQuery("schema_tables");
 
