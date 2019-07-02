@@ -12,9 +12,9 @@ import utilities.Databases;
 import utilities.Databases.DBMS;
 
 public class BehaviorFactory {
-	private static final BehaviorMap<Behavior> BMAP;
+	private static final BehaviorMap BMAP;
 	static {
-		BMAP = new BehaviorMap<>();
+		BMAP = new BehaviorMap();
 	}
 	
 	public <T extends Behavior> T getBehavior(Class<T> type) {
@@ -36,11 +36,16 @@ public class BehaviorFactory {
 			String err = "resource of type[%s] and dbms[%s] not found";
 			throw new FinderRuntimeException(String.format(err, type, dbms));
 		} else if (result.size() > 2) {
-			String err = "too many found"; // TODO better err msg
+			// TODO better err message
+			String err = "too many found"; 
 			throw new FinderRuntimeException(String.format(err));
 		} else {
 			return type.cast(result.get(0));
 		}
+	}
+	
+	private static BehaviorMap createBehaviorMap() {
+		return null;
 	}
 	
 }
