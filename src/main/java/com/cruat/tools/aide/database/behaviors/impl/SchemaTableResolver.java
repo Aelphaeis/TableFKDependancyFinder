@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors;
+package com.cruat.tools.aide.database.behaviors.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import com.cruat.tools.aide.database.behaviors.Behavior;
 import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 import com.cruat.tools.aide.database.utilities.Queries;
 import com.cruat.tools.aide.database.utilities.Databases.DBMS;
@@ -19,7 +20,7 @@ import com.cruat.tools.aide.database.utilities.Databases.DBMS;
  * @author morain
  *
  */
-public class SchemaTableResolver implements com.cruat.tools.aide.database.behaviors.factory.Behavior {
+public class SchemaTableResolver implements com.cruat.tools.aide.database.behaviors.Behavior {
 	private static final Logger logger = LogManager.getLogger(SchemaTableResolver.class);
 	private static final String TABLE_QUERY = Queries.getQuery("schema_tables");
 

@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors.factory;
+package com.cruat.tools.aide.database.behaviors;
 
 import com.cruat.tools.aide.database.utilities.Databases.DBMS;
 

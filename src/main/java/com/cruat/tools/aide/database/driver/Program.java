@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.cruat.tools.aide.database.behaviors.DeleteStatementResolver;
-import com.cruat.tools.aide.database.behaviors.DependencyMapper;
-import com.cruat.tools.aide.database.behaviors.SchemaTableResolver;
+import com.cruat.tools.aide.database.behaviors.impl.DeleteStatementResolver;
+import com.cruat.tools.aide.database.behaviors.impl.DependencyMapper;
+import com.cruat.tools.aide.database.behaviors.impl.SchemaTableResolver;
 import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
 import com.cruat.tools.aide.database.utilities.DatabaseSettings;
 import com.cruat.tools.aide.database.utilities.QuerySettings;
