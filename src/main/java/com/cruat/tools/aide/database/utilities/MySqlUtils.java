@@ -6,16 +6,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
 import com.mysql.jdbc.PreparedStatement;
 
 import jmo.structures.TreeNode;
 
-import org.apache.log4j.Logger;
-
 public class MySqlUtils {
 	
-	private static final Logger logger = Logger.getLogger(MySqlUtils.class) ;
+	private static final Logger logger = LogManager.getLogger();
 	private static String query = Queries.getQuery("list_dependents");
 	
 	public static List<TableDependencyInfo> listTableChildren(Connection connection, String schemaName, String tableName) throws SQLException{

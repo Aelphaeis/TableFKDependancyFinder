@@ -7,7 +7,8 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
 import com.cruat.tools.aide.database.utilities.MySqlUtils;
@@ -36,7 +37,7 @@ public class ObfucatedDeleteStatementResolver implements Visitor<TreeNode<TableD
 		return info;
 	}
 	
-	private static final Logger logger = Logger.getLogger(ObfucatedDeleteStatementResolver.class);
+	private static final Logger logger = LogManager.getLogger();
 	private static final String KEY = "@id";
 	Map<String, String> obfuscated;
 	Randomizer randomizer;

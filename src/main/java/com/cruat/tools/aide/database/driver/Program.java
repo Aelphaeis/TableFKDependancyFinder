@@ -3,7 +3,8 @@ package com.cruat.tools.aide.database.driver;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.cruat.tools.aide.database.behaviors.impl.DeleteStatementResolver;
 import com.cruat.tools.aide.database.behaviors.impl.DependencyMapper;
@@ -17,7 +18,7 @@ import jmo.structures.TreeNode;
 
 public class Program {
 	
-	private static final Logger logger = Logger.getLogger(Program.class);
+	private static final Logger logger = LogManager.getLogger();
 	
 	public static final String PK = QuerySettings.PRIMARY_KEY.getValue();
 	public static final String SCHEMA = QuerySettings.SCHEMA.getValue();
