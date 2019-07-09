@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.driver;
+package com.cruat.tools.aide.database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
