@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors.impl;
+package com.cruat.tools.aide.database.behaviors.impl.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
