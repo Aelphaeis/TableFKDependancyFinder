@@ -13,7 +13,9 @@ import jmo.patterns.visitor.Visitor;
 import jmo.structures.TreeNode;
 
 /**
- * This class implements the visitor pattern to transverse a {@link TreeNode} and creates a delete statement
+ * This class implements the visitor pattern to transverse a {@link TreeNode}
+ * and creates a delete statement
+ * 
  * @author joseph.morain
  *
  */
