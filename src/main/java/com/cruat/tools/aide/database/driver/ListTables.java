@@ -20,7 +20,7 @@ public class ListTables {
 		BehaviorFactory factory = new BehaviorFactory();
 		SchemaTableResolver r = factory.getBehavior(SchemaTableResolver.class);
 		try (Connection connection = DatabaseSettings.getConnection()) {
-			r.getAllTables(connection, SCHEMA).forEach(logger::info);
+			r.resolve(connection, SCHEMA).forEach(logger::info);
 		} catch (SQLException e) {
 			logger.error("Error occured with connection", e);
 		}

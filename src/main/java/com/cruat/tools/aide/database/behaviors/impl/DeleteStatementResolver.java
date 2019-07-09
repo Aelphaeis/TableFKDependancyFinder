@@ -25,7 +25,7 @@ public class DeleteStatementResolver implements Visitor<TreeNode<TableDependency
 	public static TreeNode<TableDependencyInfo> resolveDependencies(Connection connection, String schema, String table, String idColumn) throws SQLException{
 		
 		SchemaTableResolver tableResolver = new SchemaTableResolver();
-		List<String> tables = tableResolver.getAllTables(connection, schema);
+		List<String> tables = tableResolver.resolve(connection, schema);
 
 		boolean existing = tables.stream()
 			.anyMatch(p -> p.equalsIgnoreCase(table));

@@ -42,7 +42,7 @@ public class Program {
 	
 	public static void listAllTables()  {
 		new SchemaTableResolver()
-			.getAllTables(getConnection(), SCHEMA)
+			.resolve(getConnection(), SCHEMA)
 			.forEach(logger::info);
 	}
 	

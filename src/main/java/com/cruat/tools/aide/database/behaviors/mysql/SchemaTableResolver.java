@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.cruat.tools.aide.database.behaviors.MySQLBehavior;
+import com.cruat.tools.aide.database.behaviors.TableResolver;
 import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 import com.cruat.tools.aide.database.utilities.Databases.DBMS;
 import com.cruat.tools.aide.database.utilities.Queries;
@@ -20,11 +21,28 @@ import com.cruat.tools.aide.database.utilities.Queries;
  * @author morain
  *
  */
-public class SchemaTableResolver extends MySQLBehavior {
+public class SchemaTableResolver extends MySQLBehavior implements TableResolver {
 	private static final Logger logger = LogManager.getLogger();
 	private static final String TABLE_QUERY = Queries.getQuery("schema_tables");
 
-	public List<String> getAllTables(Connection conn, String schema){
+	private static List<String> executeQuery(PreparedStatement stmt)
+			throws SQLException {
+		List<String> tables = new ArrayList<>();
+		try (ResultSet results = stmt.executeQuery()) {
+			while (results.next()) {
+				tables.add(results.getString("TABLE_NAME"));
+			}
+		}
+		return tables;
+	}
+
+	@Override
+	public DBMS getVendor() {
+		return DBMS.MYSQL;
+	}
+
+	@Override
+	public List<String> resolve(Connection conn, String schema) {
 		long start = System.currentTimeMillis();
 		logger.trace("Preparing Statement");
 		try (PreparedStatement stmt = conn.prepareStatement(TABLE_QUERY)){
@@ -44,21 +62,5 @@ public class SchemaTableResolver extends MySQLBehavior {
 			String msg = "table retrieval finished in %s ms";
 			logger.trace(String.format(msg, end - start));
 		}
-	}
-	
-	private static List<String> executeQuery(PreparedStatement stmt)
-			throws SQLException {
-		List<String> tables = new ArrayList<>();
-		try (ResultSet results = stmt.executeQuery()) {
-			while (results.next()) {
-				tables.add(results.getString("TABLE_NAME"));
-			}
-		}
-		return tables;
-	}
-
-	@Override
-	public DBMS getVendor() {
-		return DBMS.MYSQL;
 	}
 }
