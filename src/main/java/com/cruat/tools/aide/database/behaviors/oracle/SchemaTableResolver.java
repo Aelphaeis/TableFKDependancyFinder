@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors.impl.oracle;
+package com.cruat.tools.aide.database.behaviors.oracle;
 
 public class SchemaTableResolver {
 	
