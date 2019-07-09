@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.cruat.tools.aide.database.behaviors.BehaviorFactory;
-import com.cruat.tools.aide.database.behaviors.impl.mysql.SchemaTableResolver;
+import com.cruat.tools.aide.database.behaviors.mysql.SchemaTableResolver;
 import com.cruat.tools.aide.database.utilities.DatabaseSettings;
 import com.cruat.tools.aide.database.utilities.QuerySettings;
 

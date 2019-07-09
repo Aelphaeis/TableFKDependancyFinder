@@ -6,7 +6,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-import com.cruat.tools.aide.database.behaviors.impl.mysql.SchemaTableResolver;
+import com.cruat.tools.aide.database.behaviors.mysql.SchemaTableResolver;
 import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
 import com.cruat.tools.aide.database.utilities.MySqlUtils;
 
