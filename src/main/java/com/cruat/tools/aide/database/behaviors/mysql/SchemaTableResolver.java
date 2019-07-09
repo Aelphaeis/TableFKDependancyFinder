@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cruat.tools.aide.database.behaviors.Behavior;
+import com.cruat.tools.aide.database.behaviors.MySQLBehavior;
 import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 import com.cruat.tools.aide.database.utilities.Databases.DBMS;
 import com.cruat.tools.aide.database.utilities.Queries;
@@ -20,7 +20,7 @@ import com.cruat.tools.aide.database.utilities.Queries;
  * @author morain
  *
  */
-public class SchemaTableResolver implements Behavior {
+public class SchemaTableResolver extends MySQLBehavior {
 	private static final Logger logger = LogManager.getLogger();
 	private static final String TABLE_QUERY = Queries.getQuery("schema_tables");
 

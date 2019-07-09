@@ -1,5 +1,7 @@
 package com.cruat.tools.aide.database.behaviors.oracle;
 
-public class SchemaTableResolver {
+import com.cruat.tools.aide.database.behaviors.OracleBehavior;
+
+public class SchemaTableResolver extends OracleBehavior{
 	
 }
