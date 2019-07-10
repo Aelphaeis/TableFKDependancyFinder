@@ -1,4 +1,4 @@
-package utilities;
+package aide.database.utilities;
 
 import static org.junit.Assert.assertNotNull;
 
