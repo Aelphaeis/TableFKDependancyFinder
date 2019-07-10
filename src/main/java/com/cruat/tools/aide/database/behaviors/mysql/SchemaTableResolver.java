@@ -2,10 +2,9 @@ package com.cruat.tools.aide.database.behaviors.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +15,8 @@ import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 import com.cruat.tools.aide.database.utilities.Databases.DBMS;
 import com.cruat.tools.aide.database.utilities.Queries;
 
+import jmo.db.QueryResult;
+
 /**
  * This class gets all the tables from a given schema
  * @author morain
@@ -25,42 +26,28 @@ public class SchemaTableResolver extends MySQLBehavior implements TableResolver 
 	private static final Logger logger = LogManager.getLogger();
 	private static final String TABLE_QUERY = Queries.getQuery("schema_tables");
 
-	private static List<String> executeQuery(PreparedStatement stmt)
-			throws SQLException {
-		List<String> tables = new ArrayList<>();
-		try (ResultSet results = stmt.executeQuery()) {
-			while (results.next()) {
-				tables.add(results.getString("TABLE_NAME"));
-			}
-		}
-		return tables;
-	}
 
+	@Override
+	public List<String> resolve(Connection conn, String schema) {
+		return run(conn, TABLE_QUERY, schema).column(0).stream()
+				.map(String.class::cast)
+				.collect(Collectors.toList());
+	}
+	
+	public QueryResult run(Connection c, String query, Object... arguments) {
+		try(PreparedStatement stmt = c.prepareStatement(query)){
+			for(int i = 0; i < arguments.length; i++) {
+				stmt.setObject(i + 1, arguments[i]);
+			}
+			return new QueryResult(stmt.executeQuery());
+		} catch (SQLException e) {
+			throw new FinderRuntimeException(e);
+		}
+	}
+	
 	@Override
 	public DBMS getVendor() {
 		return DBMS.MYSQL;
 	}
 
-	@Override
-	public List<String> resolve(Connection conn, String schema) {
-		long start = System.currentTimeMillis();
-		logger.trace("Preparing Statement");
-		try (PreparedStatement stmt = conn.prepareStatement(TABLE_QUERY)){
-			
-			logger.trace("Setting variables for prepared statement");
-			stmt.setString(1, schema);
-			
-			logger.trace("executing prepared statement");
-			return executeQuery(stmt);
-		} catch (SQLException e) {
-			String err = "Unable to get table list";
-			logger.error(err, e);
-			throw new FinderRuntimeException(err, e);
-		}
-		finally {
-			long end = System.currentTimeMillis();
-			String msg = "table retrieval finished in %s ms";
-			logger.trace(String.format(msg, end - start));
-		}
-	}
 }
