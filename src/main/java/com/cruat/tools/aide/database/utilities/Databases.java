@@ -1,6 +1,7 @@
 package com.cruat.tools.aide.database.utilities;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,9 +11,22 @@ import org.apache.logging.log4j.Logger;
 
 import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 
+import jmo.db.QueryResult;
+
 public class Databases {
 	private static final String DMBS_REGEX = "jdbc:(.*?):.*";
 	private static final Pattern DBMS_PATTERN = Pattern.compile(DMBS_REGEX);
+	
+	public static QueryResult query(Connection c, String query, Object...args) {
+		try(PreparedStatement stmt = c.prepareStatement(query)){
+			for(int i = 0; i < args.length; i++) {
+				stmt.setObject(i + 1, args[i]);
+			}
+			return new QueryResult(stmt.executeQuery());
+		} catch (SQLException e) {
+			throw new FinderRuntimeException(e);
+		}
+	}
 	
 	/**
 	 * Represents different DataBase Management Systems
