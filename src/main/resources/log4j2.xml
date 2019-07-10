@@ -3,12 +3,18 @@
 <Configuration status="WARN">
 	<Appenders>
 		<Console name="console" target="SYSTEM_OUT">
-			<PatternLayout pattern="[%-5p] %d{yyyy-MM-dd HH:mm:ss.SSS} %l: %m%n" />
+           	<NoMarkerFilter onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="[%-p{length=1}] %d %l: %m%n" />
+		</Console>
+		<Console name="flowConsole" target="SYSTEM_OUT">
+     		<MarkerFilter marker="FLOW" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="[%-p{length=1}] %d%l: %m%n" />
 		</Console>
 	</Appenders>
 	<Loggers>
 		<Root level="trace">
 			<AppenderRef ref="console" />
+			<AppenderRef ref="flowConsole" />
 		</Root>
 	</Loggers>
 </Configuration>	
