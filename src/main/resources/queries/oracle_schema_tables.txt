@@ -1,4 +1,1 @@
-SELECT DISTINCT OWNER, OBJECT_NAME 
-  FROM DBA_OBJECTS
- WHERE OBJECT_TYPE = 'TABLE'
-   AND OWNER = ?
+select TABLE_NAME from all_Tables where owner = ?
