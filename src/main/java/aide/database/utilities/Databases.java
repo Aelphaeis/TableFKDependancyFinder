@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.utilities;
+package aide.database.utilities;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +9,7 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
-
+import aide.database.exceptions.FinderRuntimeException;
 import jmo.db.QueryResult;
 
 public class Databases {

@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors.impl;
+package aide.database.behaviors.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,10 +6,9 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-import com.cruat.tools.aide.database.behaviors.mysql.SchemaTableResolver;
-import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
-import com.cruat.tools.aide.database.utilities.MySqlUtils;
-
+import aide.database.behaviors.mysql.SchemaTableResolver;
+import aide.database.pojo.TableDependencyInfo;
+import aide.database.utilities.MySqlUtils;
 import jmo.patterns.visitor.Visitor;
 import jmo.structures.TreeNode;
 

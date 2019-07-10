@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database;
+package aide.database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cruat.tools.aide.database.behaviors.BehaviorFactory;
-import com.cruat.tools.aide.database.behaviors.TableResolver;
-import com.cruat.tools.aide.database.utilities.DatabaseSettings;
-import com.cruat.tools.aide.database.utilities.QuerySettings;
+import aide.database.behaviors.BehaviorFactory;
+import aide.database.behaviors.TableResolver;
+import aide.database.utilities.DatabaseSettings;
+import aide.database.utilities.QuerySettings;
 
 public class ListTables {
 	

@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database;
+package aide.database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,13 +6,12 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cruat.tools.aide.database.behaviors.impl.DeleteStatementResolver;
-import com.cruat.tools.aide.database.behaviors.impl.DependencyMapper;
-import com.cruat.tools.aide.database.behaviors.mysql.SchemaTableResolver;
-import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
-import com.cruat.tools.aide.database.utilities.DatabaseSettings;
-import com.cruat.tools.aide.database.utilities.QuerySettings;
-
+import aide.database.behaviors.impl.DeleteStatementResolver;
+import aide.database.behaviors.impl.DependencyMapper;
+import aide.database.behaviors.mysql.SchemaTableResolver;
+import aide.database.pojo.TableDependencyInfo;
+import aide.database.utilities.DatabaseSettings;
+import aide.database.utilities.QuerySettings;
 import jmo.patterns.visitor.Stringifier;
 import jmo.structures.TreeNode;
 

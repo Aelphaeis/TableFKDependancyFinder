@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.exceptions;
+package aide.database.exceptions;
 
 public class FinderRuntimeException extends RuntimeException {
 	

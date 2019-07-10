@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors;
+package aide.database.behaviors;
 
 import java.sql.Connection;
 import java.util.List;

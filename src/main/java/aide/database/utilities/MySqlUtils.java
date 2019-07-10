@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.utilities;
+package aide.database.utilities;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,9 +9,9 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
 import com.mysql.jdbc.PreparedStatement;
 
+import aide.database.pojo.TableDependencyInfo;
 import jmo.structures.TreeNode;
 
 public class MySqlUtils {

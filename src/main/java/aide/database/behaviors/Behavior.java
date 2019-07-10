@@ -1,6 +1,6 @@
-package com.cruat.tools.aide.database.behaviors;
+package aide.database.behaviors;
 
-import com.cruat.tools.aide.database.utilities.Databases.DBMS;
+import aide.database.utilities.Databases.DBMS;
 
 public interface Behavior {
 	public DBMS getVendor();

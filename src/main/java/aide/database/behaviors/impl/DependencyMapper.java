@@ -1,13 +1,12 @@
-package com.cruat.tools.aide.database.behaviors.impl;
+package aide.database.behaviors.impl;
 
-import static com.cruat.tools.aide.database.behaviors.impl.DeleteStatementResolver.resolveDependencies;
+import static aide.database.behaviors.impl.DeleteStatementResolver.resolveDependencies;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
-import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
-
+import aide.database.exceptions.FinderRuntimeException;
+import aide.database.pojo.TableDependencyInfo;
 import jmo.structures.TreeNode;
 
 public class DependencyMapper {

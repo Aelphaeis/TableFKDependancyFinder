@@ -1,10 +1,10 @@
-package com.cruat.tools.aide.database.behaviors.oracle;
+package aide.database.behaviors.oracle;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.cruat.tools.aide.database.behaviors.OracleBehavior;
-import com.cruat.tools.aide.database.behaviors.TableResolver;
+import aide.database.behaviors.OracleBehavior;
+import aide.database.behaviors.TableResolver;
 
 public class SchemaTableResolver extends OracleBehavior implements TableResolver {
 

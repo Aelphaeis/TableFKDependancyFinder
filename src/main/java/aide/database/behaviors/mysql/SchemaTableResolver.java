@@ -1,14 +1,14 @@
-package com.cruat.tools.aide.database.behaviors.mysql;
+package aide.database.behaviors.mysql;
 
 import java.sql.Connection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.cruat.tools.aide.database.behaviors.MySQLBehavior;
-import com.cruat.tools.aide.database.behaviors.TableResolver;
-import com.cruat.tools.aide.database.utilities.Databases;
-import com.cruat.tools.aide.database.utilities.Databases.DBMS;
-import com.cruat.tools.aide.database.utilities.Queries;
+import aide.database.behaviors.MySQLBehavior;
+import aide.database.behaviors.TableResolver;
+import aide.database.utilities.Databases;
+import aide.database.utilities.Queries;
+import aide.database.utilities.Databases.DBMS;
 
 /**
  * This class gets all the tables from a given schema

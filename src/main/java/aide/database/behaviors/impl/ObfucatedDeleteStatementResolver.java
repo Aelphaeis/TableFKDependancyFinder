@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors.impl;
+package aide.database.behaviors.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,9 +10,8 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cruat.tools.aide.database.pojo.TableDependencyInfo;
-import com.cruat.tools.aide.database.utilities.MySqlUtils;
-
+import aide.database.pojo.TableDependencyInfo;
+import aide.database.utilities.MySqlUtils;
 import jmo.patterns.visitor.Visitor;
 import jmo.structures.TreeNode;
 import jmo.util.Randomizer;

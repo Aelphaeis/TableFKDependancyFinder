@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.utilities;
+package aide.database.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
+import aide.database.exceptions.FinderRuntimeException;
 
 public class DatabaseSettings {
 	

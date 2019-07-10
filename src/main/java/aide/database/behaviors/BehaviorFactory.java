@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors;
+package aide.database.behaviors;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,11 +10,10 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
-import com.cruat.tools.aide.database.utilities.DatabaseSettings;
-import com.cruat.tools.aide.database.utilities.Databases;
-import com.cruat.tools.aide.database.utilities.Databases.DBMS;
-
+import aide.database.exceptions.FinderRuntimeException;
+import aide.database.utilities.DatabaseSettings;
+import aide.database.utilities.Databases;
+import aide.database.utilities.Databases.DBMS;
 import jmo.util.Reflector;
 
 public class BehaviorFactory {

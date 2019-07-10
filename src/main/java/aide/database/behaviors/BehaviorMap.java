@@ -1,4 +1,4 @@
-package com.cruat.tools.aide.database.behaviors;
+package aide.database.behaviors;
 
 import java.util.HashMap;
 import java.util.List;
