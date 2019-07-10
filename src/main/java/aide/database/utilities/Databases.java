@@ -3,6 +3,7 @@ package aide.database.utilities;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,10 +14,12 @@ import aide.database.exceptions.FinderRuntimeException;
 import jmo.db.QueryResult;
 
 public class Databases {
+	private static final Logger logger = LogManager.getLogger();
 	private static final String DMBS_REGEX = "jdbc:(.*?):.*";
 	private static final Pattern DBMS_PATTERN = Pattern.compile(DMBS_REGEX);
 	
 	public static QueryResult query(Connection c, String query, Object...args) {
+		logger.traceEntry(() -> c, () -> query, () -> Arrays.toString(args));
 		try(PreparedStatement stmt = c.prepareStatement(query)){
 			for(int i = 0; i < args.length; i++) {
 				stmt.setObject(i + 1, args[i]);
