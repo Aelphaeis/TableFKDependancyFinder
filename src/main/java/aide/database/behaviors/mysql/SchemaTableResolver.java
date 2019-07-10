@@ -3,7 +3,6 @@ package aide.database.behaviors.mysql;
 import java.sql.Connection;
 import java.util.List;
 
-import aide.database.behaviors.MySQLBehavior;
 import aide.database.behaviors.TableResolver;
 import aide.database.utilities.Databases;
 import aide.database.utilities.Databases.DBMS;
@@ -14,7 +13,7 @@ import aide.database.utilities.Queries;
  * @author morain
  *
  */
-public class SchemaTableResolver extends MySQLBehavior implements TableResolver {
+public class SchemaTableResolver implements TableResolver {
 	private static final String QUERY = Queries.getQuery("schema_tables");
 
 	@Override
@@ -26,5 +25,4 @@ public class SchemaTableResolver extends MySQLBehavior implements TableResolver 
 	public DBMS getVendor() {
 		return DBMS.MYSQL;
 	}
-
 }
