@@ -23,7 +23,8 @@ public class Queries {
 	
 
 	public static String getQuery(String name) {
-		return QUERY_MAP.get(name);
+		logger.traceEntry(null, name);
+		return logger.traceExit(QUERY_MAP.get(name));
 	}
 	
 
