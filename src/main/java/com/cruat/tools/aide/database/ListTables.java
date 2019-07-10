@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.cruat.tools.aide.database.behaviors.BehaviorFactory;
-import com.cruat.tools.aide.database.behaviors.mysql.SchemaTableResolver;
+import com.cruat.tools.aide.database.behaviors.TableResolver;
 import com.cruat.tools.aide.database.utilities.DatabaseSettings;
 import com.cruat.tools.aide.database.utilities.QuerySettings;
 
@@ -18,7 +18,7 @@ public class ListTables {
 	
 	public static void main(String... args) {
 		BehaviorFactory factory = new BehaviorFactory();
-		SchemaTableResolver r = factory.getBehavior(SchemaTableResolver.class);
+		TableResolver r = factory.getBehavior(TableResolver.class);
 		try (Connection connection = DatabaseSettings.getConnection()) {
 			r.resolve(connection, SCHEMA).forEach(logger::info);
 		} catch (SQLException e) {
