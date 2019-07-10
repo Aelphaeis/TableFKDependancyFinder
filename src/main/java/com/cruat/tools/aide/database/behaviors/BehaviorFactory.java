@@ -3,9 +3,12 @@ package com.cruat.tools.aide.database.behaviors;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 import com.cruat.tools.aide.database.utilities.DatabaseSettings;
@@ -15,6 +18,7 @@ import com.cruat.tools.aide.database.utilities.Databases.DBMS;
 import jmo.util.Reflector;
 
 public class BehaviorFactory {
+	private static final Logger logger = LogManager.getLogger();
 	private static final BehaviorMap BMAP = createBehaviorMap();
 	
 	public <T extends Behavior> T getBehavior(Class<T> type) {
@@ -26,24 +30,34 @@ public class BehaviorFactory {
 	}
 	
 	public <T extends Behavior> T getBehavior(DBMS dbms, Class<T> type) {
-		List<Behavior> behaviors = BMAP.getOrDefault(type, new ArrayList<>());
-		List<Behavior> result = behaviors.stream()
+		logger.traceEntry(null, dbms, type);
+		
+		List<T> result = BMAP.entrySet().stream()
+				.filter(p -> type.isAssignableFrom(p.getKey()))
+				.map(Entry::getValue)
+				.flatMap(List::stream)
 				.filter(p -> dbms.equals(p.getVendor()))
-				.filter(type::isInstance).collect(Collectors.toList());
-		if (result.isEmpty()) {
+				.filter(type::isInstance)
+				.map(type::cast)
+				.collect(Collectors.toList());
+		
+		return logger.traceExit(validate(result, dbms, type).get(0));
+	}
+	
+	private <T> List<T> validate(List<T> r, DBMS dbms, Class<T> type){
+		if (r.isEmpty()) {
 			String err = "resource of type[%s] and dbms[%s] not found";
 			throw new FinderRuntimeException(String.format(err, type, dbms));
-		} else if (result.size() > 2) {
-			String arrStr = Arrays.toString(result.toArray());
+		} else if (r.size() > 2) {
 			String err = "To many results for type[%s] and dbms[%s] : %s";
-			err = String.format(err, type, dbms, arrStr);
+			err = String.format(err, type, dbms, r);
 			throw new FinderRuntimeException(String.format(err));
-		} else {
-			return type.cast(result.get(0));
 		}
+		return r;
 	}
 	
 	private static BehaviorMap createBehaviorMap() {
+		logger.traceEntry();
 		Package pkg = Behavior.class.getPackage();
 		BehaviorMap bMap = new BehaviorMap();
 		for (Class<?> cls : Reflector.getPackageClasses(pkg)) {
@@ -51,9 +65,10 @@ public class BehaviorFactory {
 			if (Behavior.class.isAssignableFrom(cls) && isCreateable) {
 				Behavior b = Behavior.class.cast(Reflector.initParamCtor(cls));
 				Class<? extends Behavior> bCls = b.getClass();
+				logger.trace("adding [{}]{}] to behavior map", bCls, b);
 				bMap.computeIfAbsent(bCls, p -> new ArrayList<>()).add(b);
 			}
 		}
-		return bMap;
+		return logger.traceExit(bMap);
 	}
 }
