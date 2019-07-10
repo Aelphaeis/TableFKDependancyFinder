@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.cruat.tools.aide.database.exceptions.FinderRuntimeException;
 
 public class Databases {
@@ -18,8 +21,10 @@ public class Databases {
 	 */
 	public enum DBMS {
 		MYSQL, ORACLE;
-		
+
+		private static final Logger logger = LogManager.getLogger();
 		public static DBMS resolve(Connection connection) {
+			logger.traceEntry(null, connection);
 			try {
 				String url = connection.getMetaData().getURL();
 				Matcher matcher = DBMS_PATTERN.matcher(url);
@@ -27,21 +32,20 @@ public class Databases {
 					String result = matcher.group(1);
 					for (DBMS current : DBMS.values()) {
 						if (current.name().equalsIgnoreCase(result)) {
-							return current;
+							return logger.traceExit(current);
 						}
 					}
 				}
-				String err = "Unable to resolve DBMS. URL:[%s]";
-				throw new UnknownDBMSException(String.format(err, url));
+				String err = "Unable to resolve DBMS. URL:[" + url + "]";
+				throw logger.throwing(new UnknownDBMSException(err));
 			} catch (SQLException e) {
 				String err = "Unable to resolve DBMS";
-				throw new UnknownDBMSException(err, e);
+				throw logger.throwing(new UnknownDBMSException(err, e));
 			}
 		}
 	}
 	
 	public static class UnknownDBMSException extends FinderRuntimeException {
-		
 		private static final long serialVersionUID = 1L;
 		
 		public UnknownDBMSException(String message, Throwable cause) {
