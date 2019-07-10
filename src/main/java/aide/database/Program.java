@@ -25,11 +25,7 @@ public class Program {
 
 	
 	public static void main(String... args) {
-		try(Connection connection  = DatabaseSettings.getConnection()){
-			connection.getMetaData();
-		} catch (SQLException e) {
-			logger.error("Error occured with connection", e);
-		}
+		listDependenciesMap();
 	}
 	
 	public static void listDependenciesMap() {
