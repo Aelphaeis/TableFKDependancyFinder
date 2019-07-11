@@ -45,8 +45,9 @@ public class BehaviorFactory {
 	
 	private <T> List<T> validate(List<T> r, DBMS dbms, Class<T> type){
 		if (r.isEmpty()) {
-			String err = "resource of type[%s] and dbms[%s] not found";
-			throw new FinderRuntimeException(String.format(err, type, dbms));
+			String err = "resource of type [%s] and dbms[%s] not found";
+			err = String.format(err, type, dbms);
+			throw new UnsupportedOperationException(err);
 		} else if (r.size() > 2) {
 			String err = "To many results for type[%s] and dbms[%s] : %s";
 			err = String.format(err, type, dbms, r);
