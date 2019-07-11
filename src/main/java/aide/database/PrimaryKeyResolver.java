@@ -3,6 +3,9 @@ package aide.database;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import aide.database.exceptions.FinderRuntimeException;
 import aide.database.utilities.DatabaseSettings;
 import aide.database.utilities.Databases;
@@ -10,9 +13,11 @@ import jmo.db.QueryResult;
 
 public class PrimaryKeyResolver {
 	//TODO make this generic for mysql
+	private static final Logger logger = LogManager.getLogger();
 	public static void main(String... args) {
 		try(Connection c = DatabaseSettings.getConnection()){
 			QueryResult r = Databases.query(c, query(), "ESS_RESOURCE");
+			logger.info("\n{}", () -> r);
 		} catch (SQLException e) {
 			throw new FinderRuntimeException(e);
 		}
