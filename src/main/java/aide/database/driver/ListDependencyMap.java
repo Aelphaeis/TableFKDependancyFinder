@@ -1,4 +1,4 @@
-package aide.database;
+package aide.database.driver;
 
 import aide.database.behaviors.BehaviorFactory;
 
