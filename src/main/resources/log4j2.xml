@@ -8,7 +8,7 @@
 		</Console>
 		<Console name="flowConsole" target="SYSTEM_OUT">
      		<MarkerFilter marker="FLOW" onMatch="ACCEPT" onMismatch="DENY"/>
-			<PatternLayout pattern="[%-p{length=1}] %d%l: %m%n" />
+			<PatternLayout pattern="[%-p{length=1}] %d %l: %m%n" />
 		</Console>
 	</Appenders>
 	<Loggers>
