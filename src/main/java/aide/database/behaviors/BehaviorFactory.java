@@ -56,7 +56,7 @@ public class BehaviorFactory {
 		return r;
 	}
 	
-	private static BehaviorMap createBehaviorMap() {
+	protected static BehaviorMap createBehaviorMap() {
 		logger.traceEntry();
 		Package pkg = Behavior.class.getPackage();
 		BehaviorMap bMap = new BehaviorMap();
