@@ -14,7 +14,7 @@ import aide.database.utilities.Databases;
 import aide.database.utilities.Databases.DBMS;
 import jmo.db.QueryResult;
 
-public class PrimaryKeyResolver implements KeyResolver{
+public class PrimaryKeyResolver implements KeyResolver {
 
 	private static final Logger logger = LogManager.getLogger();
 

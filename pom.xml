@@ -6,6 +6,11 @@
 	<artifactId>aide.database</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>db.utility</name>
+	
+	<properties>
+		<project.build.sourceEncoding>ISO8859_1</project.build.sourceEncoding>
+	</properties>
+
 
 	<repositories>
 		<repository>
