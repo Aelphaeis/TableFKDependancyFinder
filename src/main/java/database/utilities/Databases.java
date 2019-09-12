@@ -19,7 +19,7 @@ public class Databases {
 	private static final Pattern DBMS_PATTERN = Pattern.compile(DMBS_REGEX);
 	
 	public static QueryResult query(Connection c, String query, Object...args) {
-		logger.traceEntry(() -> c, () -> query, () -> Arrays.toString(args));
+		logger.traceEntry(() -> query, () -> Arrays.toString(args), () -> c);
 		try(PreparedStatement stmt = c.prepareStatement(query)){
 			for(int i = 0; i < args.length; i++) {
 				stmt.setObject(i + 1, args[i]);
