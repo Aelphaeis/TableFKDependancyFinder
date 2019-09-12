@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
@@ -30,6 +31,8 @@ public class BehaviorFactory {
 	
 	public <T extends Behavior> T getBehavior(DBMS dbms, Class<T> type) {
 		logger.traceEntry(null, dbms, type);
+		Objects.requireNonNull(dbms);
+		Objects.requireNonNull(type);
 		
 		List<T> result = BMAP.entrySet().stream()
 				.filter(p -> type.isAssignableFrom(p.getKey()))
