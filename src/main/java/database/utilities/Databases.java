@@ -1,4 +1,4 @@
-package aide.database.utilities;
+package database.utilities;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import aide.database.exceptions.FinderRuntimeException;
+import database.exceptions.FinderRuntimeException;
 import jmo.db.QueryResult;
 
 public class Databases {

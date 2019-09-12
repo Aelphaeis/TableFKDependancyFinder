@@ -1,4 +1,4 @@
-package aide.database.behaviors;
+package database.behaviors;
 
 import java.util.HashMap;
 import java.util.List;

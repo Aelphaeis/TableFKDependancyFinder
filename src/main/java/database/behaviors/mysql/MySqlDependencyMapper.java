@@ -1,7 +1,7 @@
-package aide.database.behaviors.mysql;
+package database.behaviors.mysql;
 
-import aide.database.behaviors.DependencyMapper;
-import aide.database.utilities.Databases.DBMS;
+import database.behaviors.DependencyMapper;
+import database.utilities.Databases.DBMS;
 
 public class MySqlDependencyMapper implements DependencyMapper{
 

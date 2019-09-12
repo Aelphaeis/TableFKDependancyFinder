@@ -1,4 +1,4 @@
-package aide.database.utilities;
+package database.utilities;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import aide.database.pojo.TableDependencyInfo;
+import database.pojo.TableDependencyInfo;
 import jmo.structures.TreeNode;
 
 public class MySqlUtils {

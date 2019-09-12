@@ -1,12 +1,12 @@
-package aide.database.behaviors.impl;
+package database.behaviors.impl;
 
-import static aide.database.behaviors.impl.DeleteStatementResolver.resolveDependencies;
+import static database.behaviors.impl.DeleteStatementResolver.resolveDependencies;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import aide.database.exceptions.FinderRuntimeException;
-import aide.database.pojo.TableDependencyInfo;
+import database.exceptions.FinderRuntimeException;
+import database.pojo.TableDependencyInfo;
 import jmo.structures.TreeNode;
 
 public class DependencyMapper {

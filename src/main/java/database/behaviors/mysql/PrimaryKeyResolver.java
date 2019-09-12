@@ -1,4 +1,4 @@
-package aide.database.behaviors.mysql;
+package database.behaviors.mysql;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,11 +7,11 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import aide.database.behaviors.KeyResolver;
-import aide.database.behaviors.MySQLBehavior;
-import aide.database.exceptions.FinderRuntimeException;
-import aide.database.utilities.DatabaseSettings;
-import aide.database.utilities.Databases;
+import database.behaviors.KeyResolver;
+import database.behaviors.MySQLBehavior;
+import database.exceptions.FinderRuntimeException;
+import database.utilities.DatabaseSettings;
+import database.utilities.Databases;
 import jmo.db.QueryResult;
 
 public class PrimaryKeyResolver extends MySQLBehavior implements KeyResolver {

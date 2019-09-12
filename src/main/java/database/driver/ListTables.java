@@ -1,4 +1,4 @@
-package aide.database.driver;
+package database.driver;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import aide.database.behaviors.BehaviorFactory;
-import aide.database.behaviors.TableResolver;
-import aide.database.utilities.DatabaseSettings;
-import aide.database.utilities.QuerySettings;
+import database.behaviors.BehaviorFactory;
+import database.behaviors.TableResolver;
+import database.utilities.DatabaseSettings;
+import database.utilities.QuerySettings;
 
 public class ListTables {
 	

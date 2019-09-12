@@ -1,4 +1,4 @@
-package aide.database.behaviors.oracle;
+package database.behaviors.oracle;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,11 +7,11 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import aide.database.behaviors.TableResolver;
-import aide.database.exceptions.FinderRuntimeException;
-import aide.database.utilities.Databases;
-import aide.database.utilities.Databases.DBMS;
-import aide.database.utilities.Queries;
+import database.behaviors.TableResolver;
+import database.exceptions.FinderRuntimeException;
+import database.utilities.Databases;
+import database.utilities.Queries;
+import database.utilities.Databases.DBMS;
 
 public class SchemaTableResolver implements TableResolver {
 	private static final String QUERY_NAME ="oracle_schema_tables";

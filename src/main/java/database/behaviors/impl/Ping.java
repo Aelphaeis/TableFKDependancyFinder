@@ -1,4 +1,4 @@
-package aide.database.behaviors.impl;
+package database.behaviors.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;

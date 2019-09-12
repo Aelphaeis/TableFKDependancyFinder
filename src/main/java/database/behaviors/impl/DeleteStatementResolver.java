@@ -1,4 +1,4 @@
-package aide.database.behaviors.impl;
+package database.behaviors.impl;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,9 +6,9 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-import aide.database.behaviors.mysql.SchemaTableResolver;
-import aide.database.pojo.TableDependencyInfo;
-import aide.database.utilities.MySqlUtils;
+import database.behaviors.mysql.SchemaTableResolver;
+import database.pojo.TableDependencyInfo;
+import database.utilities.MySqlUtils;
 import jmo.patterns.visitor.Visitor;
 import jmo.structures.TreeNode;
 

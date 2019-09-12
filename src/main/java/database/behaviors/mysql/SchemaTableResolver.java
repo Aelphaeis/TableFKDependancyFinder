@@ -1,12 +1,12 @@
-package aide.database.behaviors.mysql;
+package database.behaviors.mysql;
 
 import java.sql.Connection;
 import java.util.List;
 
-import aide.database.behaviors.TableResolver;
-import aide.database.utilities.Databases;
-import aide.database.utilities.Databases.DBMS;
-import aide.database.utilities.Queries;
+import database.behaviors.TableResolver;
+import database.utilities.Databases;
+import database.utilities.Queries;
+import database.utilities.Databases.DBMS;
 
 /**
  * This class gets all the tables from a given schema

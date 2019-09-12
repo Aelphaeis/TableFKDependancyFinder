@@ -1,4 +1,4 @@
-package aide.database.pojo;
+package database.pojo;
 
 import javax.xml.bind.JAXBException;
 

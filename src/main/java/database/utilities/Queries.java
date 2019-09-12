@@ -1,4 +1,4 @@
-package aide.database.utilities;
+package database.utilities;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package aide.database.behaviors;
+package database.behaviors;
 
-import aide.database.utilities.Databases.DBMS;
+import database.utilities.Databases.DBMS;
 
 public interface Behavior {
 	public DBMS getVendor();

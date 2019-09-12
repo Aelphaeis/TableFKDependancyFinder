@@ -1,4 +1,4 @@
-package aide.database.utilities;
+package database.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-import aide.database.exceptions.FinderRuntimeException;
+import database.exceptions.FinderRuntimeException;
 
 public class DatabaseSettings {
 	

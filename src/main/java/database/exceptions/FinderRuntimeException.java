@@ -1,4 +1,4 @@
-package aide.database.exceptions;
+package database.exceptions;
 
 public class FinderRuntimeException extends RuntimeException {
 	

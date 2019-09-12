@@ -1,4 +1,4 @@
-package aide.database.driver;
+package database.driver;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import aide.database.behaviors.impl.DeleteStatementResolver;
-import aide.database.behaviors.impl.DependencyMapper;
-import aide.database.behaviors.mysql.SchemaTableResolver;
-import aide.database.pojo.TableDependencyInfo;
-import aide.database.utilities.DatabaseSettings;
-import aide.database.utilities.QuerySettings;
+import database.behaviors.impl.DeleteStatementResolver;
+import database.behaviors.impl.DependencyMapper;
+import database.behaviors.mysql.SchemaTableResolver;
+import database.pojo.TableDependencyInfo;
+import database.utilities.DatabaseSettings;
+import database.utilities.QuerySettings;
 import jmo.patterns.visitor.Stringifier;
 import jmo.structures.TreeNode;
 
@@ -25,7 +25,7 @@ public class Program {
 
 	
 	public static void main(String... args) {
-		listDependenciesMap();
+		printDeleteStatements();
 	}
 	
 	public static void listDependenciesMap() {
@@ -41,20 +41,24 @@ public class Program {
 			.forEach(logger::info);
 	}
 	
-	public static void printDeleteStatements() throws SQLException{
+	public static void printDeleteStatements() {
 		//You need to specify schema table and primary key for specified table.
-		Connection conn = getConnection();
-		
-		long start = System.currentTimeMillis();
-		TreeNode<TableDependencyInfo> dependencies = DeleteStatementResolver.resolveDependencies(conn, SCHEMA, TABLE, PK);
-		DeleteStatementResolver resolver = new DeleteStatementResolver();
-		dependencies.transverseNodes(resolver);
-		logger.info("\n" + resolver);
-		
-		long duration = System.currentTimeMillis() - start;
-		
-		String msg = "Resolved dependencies in %s milliseconds";
-		logger.info(String.format(msg, duration));
+		try {
+			Connection conn = getConnection();
+			
+			long start = System.currentTimeMillis();
+			TreeNode<TableDependencyInfo> dependencies = DeleteStatementResolver.resolveDependencies(conn, SCHEMA, TABLE, PK);
+			DeleteStatementResolver resolver = new DeleteStatementResolver();
+			dependencies.transverseNodes(resolver);
+			logger.info("\n" + resolver);
+			
+			long duration = System.currentTimeMillis() - start;
+			
+			String msg = "Resolved dependencies in %s milliseconds";
+			logger.info(String.format(msg, duration));
+		} catch(SQLException e) {
+			logger.error("unable to resolve delete statements", e);
+		}
 	}
 	
 	public static Connection getConnection() {

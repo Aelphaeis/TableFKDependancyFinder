@@ -1,11 +1,11 @@
-package aide.database.driver;
+package database.driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import aide.database.behaviors.BehaviorFactory;
-import aide.database.behaviors.KeyResolver;
-import aide.database.utilities.QuerySettings;
+import database.behaviors.BehaviorFactory;
+import database.behaviors.KeyResolver;
+import database.utilities.QuerySettings;
 
 public class PrimaryKeyResolver {
 	private static final Logger logger = LogManager.getLogger();

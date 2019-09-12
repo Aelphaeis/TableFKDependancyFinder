@@ -1,4 +1,4 @@
-package aide.database.utilities;
+package database.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
 
-import aide.database.exceptions.FinderRuntimeException;
+import database.exceptions.FinderRuntimeException;
 
 public enum QuerySettings {
 	SCHEMA("schema"),

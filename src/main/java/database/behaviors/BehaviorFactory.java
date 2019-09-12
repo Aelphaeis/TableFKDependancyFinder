@@ -1,4 +1,4 @@
-package aide.database.behaviors;
+package database.behaviors;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import aide.database.exceptions.FinderRuntimeException;
-import aide.database.utilities.DatabaseSettings;
-import aide.database.utilities.Databases;
-import aide.database.utilities.Databases.DBMS;
+import database.exceptions.FinderRuntimeException;
+import database.utilities.DatabaseSettings;
+import database.utilities.Databases;
+import database.utilities.Databases.DBMS;
 import jmo.util.Reflector;
 
 public class BehaviorFactory {

@@ -1,8 +1,11 @@
-package aide.database.behaviors;
+package database.behaviors;
 
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
+
+import database.behaviors.BehaviorFactory;
+import database.behaviors.BehaviorMap;
 
 public class BehaviorFactoryTest {
 	

@@ -1,6 +1,6 @@
-package aide.database.driver;
+package database.driver;
 
-import aide.database.behaviors.BehaviorFactory;
+import database.behaviors.BehaviorFactory;
 
 public class ListDependencyMap {
 	
