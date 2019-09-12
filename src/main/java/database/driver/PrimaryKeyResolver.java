@@ -12,7 +12,7 @@ public class PrimaryKeyResolver {
 	public static void main(String... args) {
 		BehaviorFactory factory = new BehaviorFactory();
 		KeyResolver kr = factory.getBehavior(KeyResolver.class);
-		String schema = QuerySettings.SCHEMA.validate();
+		String schema = QuerySettings.SCHEMA.getValue();
 		String table = QuerySettings.TABLE.validate();
 		kr.resolve(schema, table).forEach(logger::info);
 	}
