@@ -35,7 +35,7 @@ public class PrimaryKeyResolver extends MySQLBehavior implements KeyResolver {
 		query.append("SELECT k.column_name ");
 		query.append("FROM information_schema.table_constraints t ");
 		query.append("JOIN information_schema.key_column_usage k ");
-		query.append("USING(constraint_name,table_schema,table_name) ");
+		query.append("USING (constraint_name, table_schema, table_name) ");
 		query.append("WHERE t.constraint_type='PRIMARY KEY' ");
 		query.append("  AND t.table_name= ? AND t.constraint_schema = ?");
 		return query.toString();
