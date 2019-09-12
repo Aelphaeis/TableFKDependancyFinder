@@ -56,13 +56,16 @@ public class PrimaryKeyResolver implements KeyResolver {
 		try (Connection c = DatabaseSettings.getConnection()) {
 			QueryResult r = Databases.query(c, schemaQuery);
 			if (r.column(0, String.class).contains(arg)) {
+				//the schema provided by the user is correct.
 				return logger.traceExit(schema);
 			} else {
 				String ns = "userenv"; // name space
 				String p = "current_schema"; // parameter
 				String q = "select sys_context(?, ?) from dual";
 				QueryResult result = Databases.query(c, q, ns, p);
-				return logger.traceExit(result.value(0, 0, String.class));
+				String resolved = result.value(0, 0, String.class);
+				logger.warn("Schema {} not found, using {}", schema, resolved);
+				return logger.traceExit(resolved);
 			}
 		} catch (SQLException e) {
 			throw logger.throwing(new FinderRuntimeException(e));
