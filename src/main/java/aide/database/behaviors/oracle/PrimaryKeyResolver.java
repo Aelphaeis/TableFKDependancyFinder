@@ -19,7 +19,7 @@ public class PrimaryKeyResolver implements KeyResolver {
 	private static final Logger logger = LogManager.getLogger();
 
 	@Override
-	public List<String> resolve(String tableName) {
+	public List<String> resolve(String schema, String tableName) {
 		try(Connection c = DatabaseSettings.getConnection()){
 			String tab = tableName.toUpperCase();
 			QueryResult r = Databases.query(c, query(), tab);

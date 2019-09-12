@@ -3,5 +3,5 @@ package aide.database.behaviors;
 import java.util.List;
 
 public interface KeyResolver extends Behavior{
-	List<String> resolve(String tableName);
+	List<String> resolve(String schema, String tableName);
 }
