@@ -20,7 +20,7 @@ public class PrimaryKeyResolver extends MySQLBehavior implements KeyResolver {
 
 	@Override
 	public List<String> resolve(String schema, String tableName) {
-		logger.traceEntry(null, tableName);
+		logger.traceEntry(null, schema, tableName);
 		try(Connection c = DatabaseSettings.getConnection()){
 			String tab = tableName.toUpperCase();
 			QueryResult r = Databases.query(c, query(), tab, schema);
