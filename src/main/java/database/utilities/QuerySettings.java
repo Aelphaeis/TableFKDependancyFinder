@@ -1,8 +1,6 @@
 package database.utilities;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
@@ -15,7 +13,6 @@ public enum QuerySettings {
 	PRIMARY_KEY("primary.key");
 	
 	private static final String FINDER_ERR = "property [%s] required a value.";
-	private static final String RESOURCE_FOLDER = "src/main/resources/";
 	private static final String SETTINGS_FILE = "query.properties";
 
 	private final String name;
@@ -29,12 +26,7 @@ public enum QuerySettings {
 	}
 	
 	public String getValue() {
-		File f = new File(RESOURCE_FOLDER + SETTINGS_FILE);
-		return getValue(f);
-	}
-	
-	public String getValue(final File f) {
-		return getValue(this, f);
+		return Reflector.load(SETTINGS_FILE, this::readSetting);
 	}
 	
 	public String validate() {
@@ -48,17 +40,9 @@ public enum QuerySettings {
 		}
 	}
 	
-	public static String getValue(final QuerySettings setting, final File f) {
-		try (InputStream in = new FileInputStream(f)) {
-			Properties p = new Properties();
-			p.load(in);
-			
-			return p.getProperty(setting.getName());
-		} catch (FileNotFoundException e) {
-			throw new FinderRuntimeException(e);
-		} catch (Exception e) {
-			String err = "Unable to parse file";
-			throw new FinderRuntimeException(err, e);
-		}
+	private String readSetting(InputStream is) throws IOException {
+		Properties p = new Properties();
+		p.load(is);
+		return p.getProperty(getName());
 	}
 }
