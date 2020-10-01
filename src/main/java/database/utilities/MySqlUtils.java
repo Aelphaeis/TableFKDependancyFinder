@@ -1,6 +1,7 @@
 package database.utilities;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.mysql.jdbc.PreparedStatement;
 
 import database.pojo.TableDependencyInfo;
 import jmo.structures.TreeNode;
@@ -25,7 +25,7 @@ public class MySqlUtils {
 		PreparedStatement stmt = null;
 		try{
 			logger.trace("Preparing Statement");
-			stmt = (PreparedStatement) connection.prepareStatement(query);
+			stmt = connection.prepareStatement(query);
 			
 			logger.trace("Setting variables in prepared statement");
 			stmt.setString(1, schemaName);
