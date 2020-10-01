@@ -3,17 +3,18 @@ package database.utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import database.exceptions.FinderRuntimeException;
 
 public class DatabaseSettings {
 	
-	private static final String RESOURCE_FOLDER = "src/main/resources/";
-	private static final String DATABASE_FILE = "database.properties";
+	private static final String DB_INFO = "database.properties";
 	
 	private static final String URL_KEY = "connection.url";
 	private static final String USER_KEY = "connection.username";
@@ -24,7 +25,18 @@ public class DatabaseSettings {
 	}
 	
 	public static Connection getConnection() {
-		return getConnection(new File(RESOURCE_FOLDER + DATABASE_FILE));
+		Properties p = Reflector.load(DB_INFO, DatabaseSettings::getProps);
+		String url = p.getProperty(URL_KEY);
+		String user = p.getProperty(USER_KEY);
+		String pass = p.getProperty(PASS_KEY);
+		
+		try {
+			return DriverManager.getConnection(url, user, pass);
+		}
+		catch (SQLException e) {
+			String err = "Unable to parse file";
+			throw new FinderRuntimeException(err, e);
+		}
 	}
 	
 	public static Connection getConnection(File file) {
@@ -36,11 +48,19 @@ public class DatabaseSettings {
 			String user = p.getProperty(USER_KEY);
 			String pass = p.getProperty(PASS_KEY);
 			return DriverManager.getConnection(url, user, pass);
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e) {
 			throw new FinderRuntimeException(e);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			String err = "Unable to parse file";
 			throw new FinderRuntimeException(err, e);
 		}
+	}
+	
+	public static Properties getProps(InputStream in) throws IOException {
+		Properties p = new Properties();
+		p.load(in);
+		return p;
 	}
 }
