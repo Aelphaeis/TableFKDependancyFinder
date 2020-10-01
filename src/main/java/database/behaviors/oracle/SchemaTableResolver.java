@@ -26,7 +26,7 @@ public class SchemaTableResolver implements TableResolver {
 		
 	}
 	
-	private String resolveUsername(Connection c) {
+	private static String resolveUsername(Connection c) {
 		try {
 			return logger.traceExit(c.getMetaData().getUserName());
 		} catch (SQLException e) {
