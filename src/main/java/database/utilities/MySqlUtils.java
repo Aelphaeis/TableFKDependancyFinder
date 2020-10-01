@@ -21,7 +21,7 @@ public class MySqlUtils {
 	
 	public static List<TableDependencyInfo> listTableChildren(Connection connection, String schemaName, String tableName) throws SQLException{
 		logger.trace("START : ListTableChildren");
-		logger.debug("Finding information for " + schemaName + "." + tableName);
+		logger.debug("Finding information for {}.{}", schemaName, tableName);
 		PreparedStatement stmt = null;
 		try{
 			logger.trace("Preparing Statement");
@@ -46,7 +46,7 @@ public class MySqlUtils {
 				tableChild.setConstraintSchema(results.getString("CONSTRAINT_SCHEMA"));
 				tableDependencies.add(tableChild);
 			}
-			logger.debug("information query " + schemaName + "." + tableName + " is complete");
+			logger.debug("information query {}.{} is complete", schemaName, tableName);
 			logger.trace("END : ListTableChildren");
 			return tableDependencies;
 		}
@@ -64,7 +64,7 @@ public class MySqlUtils {
 	public static TreeNode<TableDependencyInfo> listChildHierarchy(Connection connection, String schema, String tableName) throws SQLException{
 		logger.trace("START : listChildHierarchy");
 
-		logger.debug("Computing table foreign key dependencies for " + schema + "." + tableName);
+		logger.debug("Computing table foreign key dependencies for {}.{}", schema, tableName);
 		TreeNode<TableDependencyInfo> tree = new TreeNode<>();
 		tree.addChildren(listTableChildren(connection, schema, tableName));
 		
@@ -82,7 +82,9 @@ public class MySqlUtils {
 		logger.trace("START : listChildHierarchy");
 		TableDependencyInfo info = n.getValue();
 		
-		logger.debug("Computing table foreign key dependencies for " + info.getConstraintSchema() + "." + info.getTableName());
+		logger.debug("Computing table foreign key dependencies for {}.{}",
+				info::getConstraintSchema,
+				info::getTableName);
 		n.addChildren(listTableChildren(connection, info.getConstraintSchema(), info.getTableName()));
 		
 		logger.trace("Computing table foreign key dependencides for children");

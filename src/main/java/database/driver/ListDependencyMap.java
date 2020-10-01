@@ -1,10 +1,11 @@
 package database.driver;
 
-import database.behaviors.BehaviorFactory;
+import database.exceptions.FinderRuntimeException;
 
 public class ListDependencyMap {
 	
-	public static void main(String... args) {
-		BehaviorFactory factory = new BehaviorFactory();
+	public static void main(String ...args) {
+		//TODO implement
+		throw new FinderRuntimeException("Not Implemented Yet");
 	}
 }

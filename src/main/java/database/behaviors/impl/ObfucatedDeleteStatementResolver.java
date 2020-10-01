@@ -51,7 +51,7 @@ public class ObfucatedDeleteStatementResolver implements Visitor<TreeNode<TableD
 
 	@Override
 	public void visit(TreeNode<TableDependencyInfo> element) {
-		logger.debug("Visiting node " + ++visitedNodeCount);
+		logger.debug("Visiting node {}", ++visitedNodeCount);
 		TreeNode<TableDependencyInfo> n = element;
 		Deque<String> statements  = new ArrayDeque<>();
 		char placeHolder = 'a';

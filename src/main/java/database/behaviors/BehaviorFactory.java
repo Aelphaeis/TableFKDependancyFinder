@@ -46,7 +46,7 @@ public class BehaviorFactory {
 		return logger.traceExit(validate(result, dbms, type).get(0));
 	}
 	
-	private <T> List<T> validate(List<T> r, DBMS dbms, Class<T> type){
+	private static <T> List<T> validate(List<T> r, DBMS dbms, Class<T> type){
 		if (r.isEmpty()) {
 			String err = "resource of type [%s] and dbms[%s] not found";
 			err = String.format(err, type, dbms);
