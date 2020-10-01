@@ -14,6 +14,10 @@ import database.exceptions.FinderRuntimeException;
 
 public class DatabaseSettings {
 	
+	static {
+		Reflector.loadClass("oracle.jdbc.OracleDriver");
+	}
+	
 	private static final String DB_INFO = "database.properties";
 	
 	private static final String URL_KEY = "connection.url";
